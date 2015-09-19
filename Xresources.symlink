@@ -1,0 +1,47 @@
+! Colorscheme source: https://github.com/morhetz/gruvbox-generalized
+! hard contrast: *background: #1d2021
+! soft contrast: *background: #32302f
+xterm*background: #1d2021
+xterm*foreground: #ebdbb2
+xterm*color0:  #282828
+xterm*color1:  #cc241d
+xterm*color2:  #98971a
+xterm*color3:  #d79921
+xterm*color4:  #458588
+xterm*color5:  #b16286
+xterm*color6:  #689d6a
+xterm*color7:  #a89984
+xterm*color8:  #928374
+xterm*color9:  #fb4934
+xterm*color10: #b8bb26
+xterm*color11: #fabd2f
+xterm*color12: #83a598
+xterm*color13: #d3869b
+xterm*color14: #8ec07c
+xterm*color15: #ebdbb2
+
+! XTerm other settings
+xterm*faceName:        DejaVu Sans Mono for Powerline
+xterm*faceSize:        12
+xterm*allowBoldFonts:  false
+xterm*scrollBar:       false
+xterm*saveLines:       4096
+
+! Every shell is a login shell by default (for inclusion of all necessary environment variables)
+xterm*loginshell: true
+
+! Double-click to select whole URLs
+xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+
+! When TERM is not set explicitly, color schemes for some programs,
+! such as vim, may not appear until a key is pressed or some other input occurs
+xterm*termName: xterm-256color
+
+! Make certain your locale settings are correct for UTF-8
+xterm*locale: true
+
+! Fix xterm window size
+xterm*VT100.geometry: 80x32
+
+! Remove black border
+xterm*borderWidth: 0

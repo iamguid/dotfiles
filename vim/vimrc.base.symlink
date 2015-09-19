@@ -1,0 +1,118 @@
+" =============================================================================
+" .vimrc.base         For Vim version 7.4.              Last change: Fri Sep 18
+"
+"
+"                                 VIM BASE CONFIG FILE
+"
+" Version:
+"    1.0
+"
+" Sections:
+"    1. General
+"    2. UI Config
+"    3. Spaces & Tabs
+"    4. Searching
+"    5. Folding
+"    6. Movement
+"    7. Backups
+"
+"
+" 1. General {{{
+" =============================================================================
+
+" Sets how many lines of history VIM has to remember
+set history=1000
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Enable syntax processing
+syntax on
+
+" set default colorscheme
+colorscheme default
+
+" :W sudo saves the file
+" (useful for handling the permission-denied error)
+command! W w !sudo tee % > /dev/null
+" }}}
+
+" 2. UI config {{{
+" =============================================================================
+set wildmenu            " visual autocomplete for command menu
+set lazyredraw          " redraw only when we need to
+set showmatch           " highlight matching [{()}]
+
+set cursorline          " highlight current cursor line
+set relativenumber      " show relative line numbers
+set number              " show current line number (use hybrid mode)
+" }}}
+
+" 3. Spaces & Tabs {{{
+" =============================================================================
+set tabstop=4       " number of visual spaces per TAB
+set shiftwidth=4    " number of spaces of (auto)indent
+set softtabstop=4   " number of spaces in tab when editing
+set smarttab        " insert tab, depending on the context
+set expandtab       " tabs are spaces
+" }}}
+
+" 4. Searching {{{
+" =============================================================================
+set ignorecase          " ignore case when searching
+set incsearch           " search as characters are entered
+set hlsearch            " highlite search results
+
+" Search text under cursor using *
+nnoremap * *N
+
+" Search only selected text in visual mode
+vnoremap * y :execute ":let @/=@\""<CR> :execute "set hlsearch"<CR>
+
+" Reset search result by <C-F8>
+nnoremap <C-F8> :nohlsearch<CR>
+" }}}
+
+" 5. Folding {{{
+" Define custom folding settings and folding pattern.
+" =============================================================================
+set foldenable               " enable folding
+set foldlevelstart=10        " open most folds by default
+set foldnestmax=10           " 10 nested fold max
+set foldmethod=marker        " fold based on marker
+" }}}
+
+" 6. Movement {{{
+" Custom keys shortcuts
+" =============================================================================
+
+" jk is escape in insert mode
+inoremap jk <esc>
+
+" Move vertically by long visual line using [jk]
+noremap j gj
+noremap k gk
+
+" Move to beginning/end of line using SHIFT+[be]
+noremap B ^
+noremap E $
+
+" Move between windows using CTRL+[hjkl]
+noremap <C-h> <C-W>h
+noremap <C-j> <C-W>j
+noremap <C-k> <C-W>k
+noremap <C-l> <C-W>l
+
+" highlight last inserted text
+nnoremap gV `[v`]
+" }}}
+
+" 7. Backups {{{
+" =============================================================================
+set backup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
+" }}}
+

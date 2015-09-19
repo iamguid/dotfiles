@@ -1,0 +1,22 @@
+#! /bin/bash
+
+sudo pacman -Syu
+
+dip=$(pacman -Qdtq)
+if [ -z $dip ]
+then
+	printf "\n:: No unnecessary dependencies found\n\n"
+else
+	printf "\n:: Removing unnecessary dependencies\n\n"
+	sudo pacman -Rs $dip
+fi
+
+sudo pacman -Sc
+
+if [ -n "$1" ]
+then
+	printf "\n:: Updating mirrors...\n"
+	sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+	sudo reflector -l 5 --sort rate --save /etc/pacman.d/mirrorlist
+fi
+

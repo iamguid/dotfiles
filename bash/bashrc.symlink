@@ -1,0 +1,71 @@
+#
+# ~/.bashrc
+#
+#Define colors
+cyan='\e[0;36m'
+light='\e[1;36m'
+NC='\e[0m'
+
+#Logo
+echo -e "${light}"
+echo -e "               +"
+echo -e "               A"
+echo -e "              RCH                ${cyan}Arch Linux${NC}" `uname -mr`
+echo -e "${light}             ARCHA               ${NC}"`date +%c`
+echo -e "${light}             RCHARC              "
+echo -e "            ; HARCH;            "
+echo -e "           +AR.CHARC            "
+echo -e "          +HARCHARCHA           "
+echo -e "         RCHARC${cyan}HARCH${light}AR;          "
+echo -e "        CHA${cyan}RCHARCHARCHA${light}+         "
+echo -e "       R${cyan}CHARCH   ARCHARC        "
+echo -e "     .HARCHA;     ;RCH;\`\"."
+echo -e "    .ARCHARC;     ;HARCH."
+echo  "    ARCHARCHA.   .RCHARCHA\`"
+echo  "   RCHARC'           'HARCHA"
+echo  "  ;RCHA                 RCHA;"
+echo  "  RC'                     'HA"
+echo  " R'                         \`C"
+echo  "'                            \`"
+
+echo -e "${NC}"
+PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\]'
+
+# If not running interactively, dont do anything
+[[ $- != *i* ]] && return
+
+# Add colors for filetype and  human-readable sizes by default on 'ls':
+alias ls='ls -h --color'
+alias lx='ls -lXB'         #  Sort by extension.
+alias lk='ls -lSr'         #  Sort by size, biggest last.
+alias lt='ls -ltr'         #  Sort by date, most recent last.
+alias lc='ls -ltcr'        #  Sort by/show change time,most recent last.
+alias lu='ls -ltur'        #  Sort by/show access time,most recent last.
+
+# The ubiquitous 'l': directories first, with alphanumeric sorting:
+alias l="ls -lv --group-directories-first"
+alias lm='ll |more'        #  Pipe through 'more'
+alias lr='ll -R'           #  Recursive ls.
+alias la='ll -A'           #  Show hidden files.
+alias tree='tree -Csuh'    #  Nice alternative to 'recursive ls' ..
+
+# Interactive
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+#Prevents accidentally clobbering files
+alias mkdir='mkdir -p'
+
+alias h='history'
+alias j='jobs -l'
+alias which='type -a'
+alias ..='cd ..'
+
+# Pretty-print of some PATH variables
+alias path='echo -e ${PATH//:/\\n}'
+alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
+
+# Makes a more readable output
+alias du='du -kh'
+alias df='df -kTh'
