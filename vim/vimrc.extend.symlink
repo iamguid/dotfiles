@@ -8,19 +8,22 @@
 "    1.0
 "
 " Sections:
-"    1. Vundle
-"    2. General
-"    3. Colors
-"    3. UI Config
-"    4. Spaces & Tabs
-"    5. Searching
-"    6. Folding
-"    3. Movement
-"    7. Backups
+"    1.  Vundle
+"    2.  General
+"    3.  Colors
+"    4.  UI Config
+"    5.  Spaces & Tabs
+"    6.  Searching
+"    7.  Folding
+"    8.  Movement
+"    9.  Backups
+"    10. FileTypes
+"    11. PluginsSettings
+"    12. Helpers
 "
 " 1. Vundle {{{
 " =============================================================================
-set nocompatible              " be iMproved, required
+set nocopatible              " be iMproved, required
 filetype off                  " required
 
 " Set the runtime path to include Vundle and initialize
@@ -146,7 +149,6 @@ set tabstop=4       " number of visual spaces per TAB
 set shiftwidth=4    " number of spaces of (auto)indent
 set softtabstop=4   " number of spaces in tab when editing
 set smarttab        " insert tab, depending on the context
-set expandtab       " tabs are spaces
 
 " Show unvisible chars
 set list
@@ -255,8 +257,8 @@ augroup END
 " JavaScript
 augroup javascript
     au!
-    au FileType javascript setlocal tabstop=2
-    au FileType javascript setlocal shiftwidth=2
+    au FileType javascript setlocal tabstop=4
+    au FileType javascript setlocal shiftwidth=4
 augroup END
 " }}}
 
@@ -327,6 +329,12 @@ augroup END
     " CtrlP will scan for dotfiles and dotdirs.
     let g:ctrlp_show_hidden = 1
 
+    " When starting up, CtrlP sets its local working directory according to this
+    " variable
+    let g:ctrlp_working_path_mode = 'rw'
+    " }}}
+
+
     " EasyMotion plugin {{{
     " https://github.com/easymotion/vim-easymotion
     " =========================================================================
@@ -358,7 +366,7 @@ augroup END
     "}}}
 "}}}
 
-" 10. Helpers {{{
+" 12. Helpers {{{
 " =============================================================================
 " Return indent (all whitespace at start of a line), converted from
 " tabs to spaces if what = 1, or from spaces to tabs otherwise.
