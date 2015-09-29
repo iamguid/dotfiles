@@ -2,37 +2,49 @@
 #
 
 [hub]
-        protocol = https
+    protocol = https
+
 [user]
-        name = Vladislav Lebedev
-        email = iam.guid@gmail.com
+    name = Vladislav Lebedev
+    email = iam.guid@gmail.com
+
 [credential]
-        helper = cache
+    helper = cache
+
 [alias]
-        co = checkout
+    co = checkout
+
 [color]
-        diff = auto
-        status = auto
-        branch = auto
-        ui = true
+    diff = auto
+    status = auto
+    branch = auto
+    ui = true
+
 [core]
-        excludesfile = ~/.gitignore
-        editor = vim
+    excludesfile = ~/.gitignore
+    editor = vim
+
 [apply]
-        whitespace = nowarn
+    whitespace = nowarn
+
 [mergetool]
-        keepBackup = false
+    keepBackup = false
+
 [difftool]
-        prompt = false
+    prompt = false
+
 [help]
-        autocorrect = 1
+    autocorrect = 1
+
 [push]
-        # See `git help config` (search for push.default)
-        # for more information on different options of the below setting.
-        #
-        # Setting to git 2.0 default to suppress warning message
-        default = simple
+    # See `git help config` (search for push.default)
+    # for more information on different options of the below setting.
+    #
+    # Setting to git 2.0 default to suppress warning message
+    default = simple
+
 [diff]
-	tool = meld
+    tool = meld
+
 [merge]
-	tool = meld
+    tool = meld
