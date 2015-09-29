@@ -23,7 +23,7 @@
 "
 " 1. Vundle {{{
 " =============================================================================
-set nocopatible              " be iMproved, required
+set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Set the runtime path to include Vundle and initialize
