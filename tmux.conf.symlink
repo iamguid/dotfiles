@@ -54,13 +54,6 @@ bind J resize-pane -D 5
 bind K resize-pane -U 5
 bind L resize-pane -R 5
 
-# and use C-h and C-l to cycle thru panes
-bind -r C-h select-window -t :-
-bind -r C-l select-window -t :+
-
-# make the current window the first window
-bind T swap-window -t 1
-
 # splitting keys
 bind-key v split-window -h
 bind-key s split-window -v
