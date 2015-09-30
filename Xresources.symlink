@@ -45,3 +45,6 @@ xterm*VT100.geometry: 80x32
 
 ! Remove black border
 xterm*borderWidth: 0
+
+! Fix the 'Alt' key
+xterm*metaSendsEscape: true
