@@ -260,6 +260,13 @@ augroup javascript
     au FileType javascript setlocal tabstop=4
     au FileType javascript setlocal shiftwidth=4
 augroup END
+
+" Python
+augroup python
+    au!
+    au FileType python setlocal tabstop=4
+    au FileType python setlocal shiftwidth=4
+augroup END
 " }}}
 
 " 11. PluginsSettings {{{
