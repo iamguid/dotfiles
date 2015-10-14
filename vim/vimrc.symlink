@@ -1,2 +1,11 @@
-" source ~/.vimrc.base
-source ~/.vimrc.extend
+" Define global environment variables
+let g:isTerminalEnv = strlen($DISPLAY) > 0 ? 0 : 1
+let g:isTmuxEnv = strlen($TMUX) > 0 ? 1 : 0
+let g:isSshEnv = strlen($DISPLAY) > 0 ? 1 : 0
+
+" Dynamically load config depending on the environment
+if g:isTerminalEnv
+    source ~/.vimrc.base
+else
+    source ~/.vimrc.extend
+endif
