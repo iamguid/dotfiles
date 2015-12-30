@@ -5,6 +5,9 @@ set-window-option -g utf8 on
 # make tmux display things in 256 colors
 set -g default-terminal "screen-256color"
 
+# Specify the default shell
+set -g default-shell $SHELL
+
 # No delay for escape key press
 set -sg escape-time 0
 
