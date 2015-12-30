@@ -39,12 +39,6 @@ bind r source-file ~/.tmux.conf \; display "Reloaded!"
 # use vim keybindings in copy mode
 setw -g mode-keys vi
 
-# explicitly disable mouse control
-setw -g mode-mouse off
-set -g mouse-select-pane off
-set -g mouse-resize-pane off
-set -g mouse-select-window off
-
 # map Vi movement keys as pane movement keys
 bind h select-pane -L
 bind j select-pane -D
