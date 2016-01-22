@@ -69,8 +69,8 @@ nnoremap * *N
 " Search only selected text in visual mode
 vnoremap * y :execute ":let @/=@\""<CR> :execute "set hlsearch"<CR>
 
-" Reset search result by <C-F8>
-nnoremap <C-F8> :nohlsearch<CR>
+" Clear highlighting on escape in normal mode
+nnoremap <esc> :noh<return><esc>
 " }}}
 
 " 5. Folding {{{
@@ -85,9 +85,6 @@ set foldmethod=marker        " fold based on marker
 " 6. Movement {{{
 " Custom keys shortcuts
 " =============================================================================
-
-" jk is escape in insert mode
-inoremap jk <esc>
 
 " Move vertically by long visual line using [jk]
 noremap j gj

@@ -177,8 +177,8 @@ nnoremap * *N
 " Search only selected text in visual mode
 vnoremap * y :execute ":let @/=@\""<CR> :execute "set hlsearch"<CR>
 
-" Reset search result by <C-F8>
-nnoremap <C-F8> :nohlsearch<CR>
+" Clear highlighting on escape in normal mode
+nnoremap <esc> :noh<return><esc>
 " }}}
 
 " 7. Folding {{{
@@ -196,9 +196,6 @@ set foldtext=NeatFoldText()  " set custom fold text
 let mapleader = ","
 let g:mapleader = ","
 
-" jk is escape in insert mode
-inoremap jk <esc>
-
 " Move vertically by long visual line using [jk]
 noremap j gj
 noremap k gk
@@ -206,12 +203,6 @@ noremap k gk
 " Move to beginning/end of line using SHIFT+[be]
 noremap B ^
 noremap E $
-
-" Move between windows using CTRL+[hjkl]
-noremap <C-h> <C-W>h
-noremap <C-j> <C-W>j
-noremap <C-k> <C-W>k
-noremap <C-l> <C-W>l
 
 " highlight last inserted text
 nnoremap gV `[v`]
