@@ -32,9 +32,9 @@ syntax on
 " set default colorscheme
 colorscheme default
 
-" :W sudo saves the file
+" :Su sudo saves the file
 " (useful for handling the permission-denied error)
-command! W w !sudo tee % > /dev/null
+command! Su w !sudo tee % > /dev/null
 " }}}
 
 " 2. UI config {{{

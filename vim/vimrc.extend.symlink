@@ -1,5 +1,5 @@
 " =============================================================================
-" .vimrc.extend         For Vim version 7.4.            Last change: Fri Sep 18
+" .vimrc.extend                                            For Vim version 7.4.
 "
 "
 "                            VIM EXTENDED CONFIG FILE
@@ -104,9 +104,9 @@ set autoread
 " set default colorscheme
 colorscheme default
 
-" :W sudo saves the file
+" :Su sudo saves the file
 " (useful for handling the permission-denied error)
-command! W w !sudo tee % > /dev/null
+command! Su w !sudo tee % > /dev/null
 " }}}
 
 " 3. Colors {{{
