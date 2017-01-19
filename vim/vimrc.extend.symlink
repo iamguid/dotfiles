@@ -59,13 +59,13 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'kien/ctrlp.vim'
-Plugin 'mtth/scratch.vim'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'scrooloose/syntastic'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'mattn/emmet-vim'
+Plugin 'SyntaxComplete'
 
 " Interface plugins
 Plugin 'ntpeters/vim-better-whitespace'
@@ -328,7 +328,7 @@ augroup END
 
     " When starting up, CtrlP sets its local working directory according to this
     " variable
-    let g:ctrlp_working_path_mode = 'rw'
+    let g:ctrlp_working_path_mode = 'cra'
     " }}}
 
 
@@ -360,6 +360,18 @@ augroup END
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
+    "}}}
+
+
+    " SyntaxComplete plugin {{{
+    " http://www.vim.org/scripts/script.php?script_id=3172
+    " =========================================================================
+    if has("autocmd") && exists("+omnifunc")
+    autocmd Filetype *
+        \	if &omnifunc == "" |
+        \		setlocal omnifunc=syntaxcomplete#Complete |
+        \	endif
+    endif
     "}}}
 "}}}
 
