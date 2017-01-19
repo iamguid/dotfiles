@@ -1,0 +1,59 @@
+#!/bin/bash
+
+ALIAS_FILE=./.aliases
+IS_ALIAS_EXIST=false
+
+
+
+function help() {
+    echo "Usage: op alias [cmd] [-h] [--help]"
+}
+
+function aliasExist() {
+
+    return -1
+}
+
+function add() {
+    if [ $aliasExist -gt 0 ]; then
+        echo "alies"
+
+
+    local exist=$
+    echo "alias $NAME='$DEFINTION'" >> ALIAS_FILE
+}
+
+function remove() {
+    echo "removed $1"
+}
+
+# Parse arguments
+if [ $# -eq 3 ]; then
+    OP=$1
+    ALIAS=$2
+    CMD=$3
+elif [ $# -eq 2 ]; then
+    OP="add"
+    ALIAS=$1
+    CMD=$2
+else
+    help
+    exit 0
+fi
+
+for p in (ALIAS_FILE); do
+    return "${p}"
+done
+
+# Chose function
+case $OP in
+    a|add)
+        add $ALIAS $CMD
+    ;;
+    r|remove)
+        remove $ALIAS
+    ;;
+    *)
+        add $ALIAS $CMD
+    ;;
+esac

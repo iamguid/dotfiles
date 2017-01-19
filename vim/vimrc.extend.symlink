@@ -21,7 +21,7 @@
 "    11. PluginsSettings
 "    12. Helpers
 "
-" 1. Vundle {{{
+" 2. Vundle {{{
 " =============================================================================
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -44,7 +44,7 @@ Plugin 'gmarik/Vundle.vim'
 " See: http://www.vim.org/
 
 " Color theme plugins
-Plugin 'morhetz/gruvbox'
+Plugin 'Zenburn'
 
 " Language plugins
 Plugin 'digitaltoad/vim-jade'
@@ -107,14 +107,7 @@ command! W w !sudo tee % > /dev/null
 
 " 3. Colors {{{
 " =============================================================================
-" See: https://github.com/morhetz/gruvbox
-colorscheme gruvbox
-set background=dark    " Setting dark mode
-
-" Colorscheme hack in console mode
-if !has("gui_running")
-    let g:gruvbox_italic=0
-endif
+colors zenburn
 " }}}
 
 " 4. UI config {{{
