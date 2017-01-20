@@ -1,53 +1,59 @@
-! Dracula Xresources palette
-! Colorscheme source: https://github.com/dracula/xresources
-xterm*xftAntialias: true
-xterm*background: #3f3f3f
-xterm*foreground: #dcdccc
-xterm*cursorColor: #aaaaaa
-xterm*colorUL: #366060
-xterm*underlineColor: #dfaf8f
-xterm*color0: #3f3f3f
-xterm*color1: #cc9393
-xterm*color2: #7f9f7f
-xterm*color3: #d0bf8f
-xterm*color4: #6ca0a3
-xterm*color5: #dc8cc3
-xterm*color6: #93e0e3
-xterm*color7: #dcdccc
-xterm*color8: #000000
-xterm*color9: #dca3a3
-xterm*color10: #bfebbf
-xterm*color11: #f0dfaf
-xterm*color12: #8cd0d3
-xterm*color13: #dc8cc3
-xterm*color14: #93e0e3
-xterm*color15: #ffffff
+! Zenburn Xresources palette
+XTerm*color0:         #3f3f3f
+XTerm*color1:         #cc9393
+XTerm*color2:         #7f9f7f
+XTerm*color3:         #d0bf8f
+XTerm*color4:         #6ca0a3
+XTerm*color5:         #dc8cc3
+XTerm*color6:         #93e0e3
+XTerm*color7:         #dcdccc
+XTerm*color8:         #000000
+XTerm*color9:         #dca3a3
+XTerm*color10:        #bfebbf
+XTerm*color11:        #f0dfaf
+XTerm*color12:        #8cd0d3
+XTerm*color13:        #dc8cc3
+XTerm*color14:        #93e0e3
+XTerm*color15:        #ffffff
+XTerm*colorUL:        #366060
+XTerm*background:     #3f3f3f
+XTerm*foreground:     #dcdccc
+XTerm*underlineColor: #dfaf8f
+XTerm*cursorColor:    #ffd700
 
 ! XTerm other settings
-xterm*faceName:        DejaVu Sans Mono for Powerline
-xterm*faceSize:        12
-xterm*allowBoldFonts:  false
-xterm*scrollBar:       false
-xterm*saveLines:       4096
+XTerm*saveLines:       4096
+XTerm*xftAntialias:    true
 
-! Every shell is a login shell by default (for inclusion of all necessary environment variables)
-xterm*loginshell: true
+! XTerm appearance settings
+XTerm*allowBoldFonts: false
+XTerm*scrollBar:      false
+xterm*faceName:       DejaVu Sans Mono for Powerline
+XTerm*faceSize:       12
+XTerm*cursorBlink:    false
+
+! Unicode support
+XTerm*utf8: 1
+
+! Every shell is a login shell by default (for inclusion of all necessary
+! environment variables)
+XTerm*loginshell: true
 
 ! Double-click to select whole URLs
-xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+XTerm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
 
 ! When TERM is not set explicitly, color schemes for some programs,
 ! such as vim, may not appear until a key is pressed or some other input occurs
-xterm*termName: xterm-256color
+XTerm*termName: xterm-256color
 
 ! Make certain your locale settings are correct for UTF-8
-xterm*locale: true
+XTerm*locale: true
 
 ! Fix xterm window size
-xterm*VT100.geometry: 80x32
+XTerm*VT100.geometry: 80x32
 
 ! Remove black border
-xterm*borderWidth: 0
+XTerm*borderWidth: 0
 
 ! Fix the 'Alt' key
-xterm*metaSendsEscape: true
+XTerm*metaSendsEscape: true

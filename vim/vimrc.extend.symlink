@@ -21,7 +21,7 @@
 "    11. PluginsSettings
 "    12. Helpers
 "
-" 2. Vundle {{{
+" 1. Vundle {{{
 " =============================================================================
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -112,6 +112,8 @@ command! Su w !sudo tee % > /dev/null
 " 3. Colors {{{
 " =============================================================================
 colors zenburn
+hi Visual        guibg=#ffd700  ctermbg=220 guifg=#000000  ctermfg=0
+hi VisualNOS     guibg=#ffd700  ctermbg=220 guifg=#000000  ctermfg=0
 " }}}
 
 " 4. UI config {{{
