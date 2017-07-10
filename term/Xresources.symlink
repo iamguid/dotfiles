@@ -56,4 +56,4 @@ XTerm*VT100.geometry: 80x32
 XTerm*borderWidth: 0
 
 ! Fix the 'Alt' key
-XTerm*metaSendsEscape: true
+XTerm*metaSendsEscape: false
