@@ -1,11 +1,8 @@
-" Define global environment variables
-let g:isTerminalEnv = strlen($DISPLAY) > 0 ? 0 : 1
-let g:isTmuxEnv = strlen($TMUX) > 0 ? 1 : 0
-let g:isSshEnv = strlen($DISPLAY) > 0 ? 1 : 0
+" Default vim settings
+"
+" Maintainer: Vladislav Lebedev <iam.guid@gmail.com>
+"
 
-" Dynamically load config depending on the environment
-if g:isTerminalEnv
-    source ~/.vimrc.base
-else
-    source ~/.vimrc.extend
-endif
+source ~/.vimrc.ide
+
+" vim:ts=4:sw=4:tw=79:fdm=marker

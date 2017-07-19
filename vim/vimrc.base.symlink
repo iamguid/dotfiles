@@ -1,67 +1,226 @@
+" Make vim more usefull
+"
+" Maintainer: Vladislav Lebedev <iam.guid@gmail.com>
+"
+
+" General {{{
 " =============================================================================
-" .vimrc.base         For Vim version 7.4.              Last change: Fri Sep 18
-"
-"
-"                                 VIM BASE CONFIG FILE
-"
-" Version:
-"    1.0
-"
-" Sections:
-"    1. General
-"    2. UI Config
-"    3. Spaces & Tabs
-"    4. Searching
-"    5. Folding
-"    6. Movement
-"    7. Backups
-"
-"
-" 1. General {{{
-" =============================================================================
+
+" Disable Vi compatible mode
+set nocompatible
 
 " Sets how many lines of history VIM has to remember
 set history=1000
 
-" Set to auto read when a file is changed from the outside
-set autoread
-
 " Enable syntax processing
 syntax on
 
-" set default colorscheme
-colorscheme default
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set fileformats=unix,dos,mac
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Redraw only when we need to
+set lazyredraw
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+let mapleader = ","
+let g:mapleader = ","
+" }}}
+
+" VIM user interface {{{
+" =============================================================================
+
+colorscheme desert
+set background=dark
+
+" Make sure that coursor is always vertically centered on j/k moves
+set scrolloff=999
+
+" Add vertical lines on column
+set colorcolumn=80
+
+" Show line, column number, and relative position within a file in the status
+" line
+set ruler
+
+" Visual autocomplete for vim's command-line
+set wildmenu
+
+" Set wildmenu completion mode
+set wildmode=list:longest,full
+
+" Show (partial) commands in the status line
+set showcmd
+
+" Allow specified keys that move the cursor left/right
+set whichwrap+=<,>,h,l
+
+" Highlight matchpairs
+set showmatch
+
+" Show line numbers
+set number
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" When searching try to be smart about cases
+set smartcase
+
+" Highlite search results
+set hlsearch
+
+" Ignore case in search patterns
+set ignorecase
+
+" Highlight current line - allows you to track cursor position more easily
+set cursorline
+
+" Showing the statusline
+set laststatus=2
+
+" Set custom fold text
+set foldtext=NeatFoldText()
+
+" Make statuslime more informative
+let &statusline='%<%f%{&mod?"[+]":""}%r%{&fenc !~ "^$\\|utf-8" || &bomb ? "[".&fenc.(&bomb?"-bom":"")."]" : ""}%=%15.(%l,%c%V %P%)'
+
+" Show unvisible chars
+set list
+set listchars=
+set listchars+=eol:↲
+set listchars+=tab:▸·
+set listchars+=trail:·
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+    set mouse=a
+endif
+
+" Gvim specific
+if has('gui_running')
+    set guioptions-=m  "remove menu bar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand scroll bar
+    set guioptions-=L  "remove left-hand scroll bar
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+endif
+" }}}
+
+" Spaces & Tabs {{{
+" =============================================================================
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs
+set smarttab
+
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+" Round indent to multiple of 'shiftwidth' for > and < commands
+set shiftround
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set nowrap "Don't Wrap lines (it is stupid)
+" }}}
+
+" VIM Session {{{
+" =============================================================================
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
+
+" Remember things between sessions
+"
+" '20  - remember marks for 20 previous files
+" \"50 - save 50 lines for each register
+" :20  - remember 20 items in command-line history
+" /20  - remember 20 items in search history
+" %    - remember the buffer list (if vim started without a file arg)
+" n    - set name of viminfo file
+set viminfo='20,\"50,:20,/20,%,n~/.viminfo
+
+" Define what to save with :mksession
+" blank - empty windows
+" buffers - all buffers not only ones in a window
+" curdir - the current directory
+" folds - including manually created ones
+" help - the help window
+" options - all options and mapping
+" winsize - window sizes
+" tabpages - all tab pages
+set sessionoptions=blank,buffers,curdir,folds,help,options,winsize,tabpages
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+" Remember info about open buffers on close
+set viminfo^=%
+" }}}
+
+" Keys mappings {{{
+" =============================================================================
+" Fast saving
+map <Leader>w :w<CR>
 
 " :Su sudo saves the file
 " (useful for handling the permission-denied error)
 command! Su w !sudo tee % > /dev/null
-" }}}
 
-" 2. UI config {{{
-" =============================================================================
-set wildmenu            " visual autocomplete for command menu
-set lazyredraw          " redraw only when we need to
-set showmatch           " highlight matching [{()}]
+" This is totally awesome - remap jj to escape in insert mode.
+" You'll never type jj anyway, so it's great!
+inoremap jj <esc>
 
-set cursorline          " highlight current cursor line
-set relativenumber      " show relative line numbers
-set number              " show current line number (use hybrid mode)
-" }}}
+" Move vertically by long visual line using [jk]
+noremap j gj
+noremap k gk
 
-" 3. Spaces & Tabs {{{
-" =============================================================================
-set tabstop=4       " number of visual spaces per TAB
-set shiftwidth=4    " number of spaces of (auto)indent
-set softtabstop=4   " number of spaces in tab when editing
-set smarttab        " insert tab, depending on the context
-set expandtab       " tabs are spaces
-" }}}
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
-" 4. Searching {{{
-" =============================================================================
-set ignorecase          " ignore case when searching
-set incsearch           " search as characters are entered
-set hlsearch            " highlite search results
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" Move a line of text using ALT+[jk]
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Move to beginning/end of line using SHIFT+[be]
+noremap B ^
+noremap E $
 
 " Search text under cursor using *
 nnoremap * *N
@@ -73,37 +232,19 @@ vnoremap * y :execute ":let @/=@\""<CR> :execute "set hlsearch"<CR>
 nnoremap <esc> :noh<return><esc>
 " }}}
 
-" 5. Folding {{{
-" Define custom folding settings and folding pattern.
+" Helpers {{{
 " =============================================================================
-set foldenable               " enable folding
-set foldlevelstart=10        " open most folds by default
-set foldnestmax=10           " 10 nested fold max
-set foldmethod=marker        " fold based on marker
+" Folding text pattern
+function! NeatFoldText()
+    let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+    let lines_count = v:foldend - v:foldstart + 1
+    let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+    let foldchar = matchstr(&fillchars, 'fold:\zs.')
+    let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+    let foldtextend = lines_count_text . repeat(foldchar, 8)
+    let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+    return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
 " }}}
 
-" 6. Movement {{{
-" Custom keys shortcuts
-" =============================================================================
-
-" Move vertically by long visual line using [jk]
-noremap j gj
-noremap k gk
-
-" Move to beginning/end of line using SHIFT+[be]
-noremap B ^
-noremap E $
-
-" highlight last inserted text
-nnoremap gV `[v`]
-" }}}
-
-" 7. Backups {{{
-" =============================================================================
-set backup
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set backupskip=/tmp/*,/private/tmp/*
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set writebackup
-" }}}
-
+" vim:ts=4:sw=4:tw=79:fdm=marker

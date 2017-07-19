@@ -1,0 +1,237 @@
+" Vim as IDE
+"
+" Maintainer: Vladislav Lebedev <iam.guid@gmail.com>
+"
+
+" Loading base vim configuration
+source ~/.vimrc.base
+
+" Vundle {{{
+" =============================================================================
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" To get more Vim plugins, tips and tricks
+" See: http://vimcolors.com/
+" See: http://vimawesome.com/
+" See: http://www.bestofvim.com/
+" See: http://www.vim.org/
+
+" Set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" Alternatively, pass a path where Vundle should install plugins
+"# call vundle#begin('~/some/path/here')
+
+" Let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" All of your Plugins must be added before the following line
+
+" Interface plugins
+Plugin 'Zenburn'
+Plugin 'bling/vim-airline'
+
+" Common plugins
+Plugin 'kien/ctrlp.vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'SyntaxComplete'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'sirver/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/syntastic'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'tyru/open-browser.vim'
+
+" Golang plugins
+Plugin 'fatih/vim-go'
+
+" Frontend plugins
+Plugin 'digitaltoad/vim-jade'
+Plugin 'groenewege/vim-less'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'othree/html5.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mattn/emmet-vim'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"# filetype plugin on
+"
+" Brief helpscrooloose/nerdcommenter
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+" }}}
+
+" VIM user interface {{{
+" =============================================================================
+colors zenburn
+" }}}
+
+" FileTypes {{{
+" Define custom settings for file types.
+" =============================================================================
+
+" Associate *.es6 with javascript filetype
+au BufRead,BufNewFile *.es6 setfiletype javascript
+
+" Jade
+augroup jade
+    au!
+    au FileType jade setlocal tabstop=2
+    au FileType jade setlocal shiftwidth=2
+augroup END
+
+" CSS
+augroup css
+    au!
+    au FileType css setlocal foldmethod=marker foldmarker={,}
+    au FileType css setlocal omnifunc=csscomplete#CompleteCSS
+augroup END
+
+" Json
+augroup json
+    au!
+    au FileType json setlocal foldmethod=marker foldmarker={,}
+    au FileType json setlocal tabstop=2
+    au FileType json setlocal shiftwidth=2
+augroup END
+
+" JavaScript
+augroup javascript
+    au!
+    au FileType javascript setlocal tabstop=4
+    au FileType javascript setlocal shiftwidth=4
+augroup END
+
+" Python
+augroup python
+    au!
+    au FileType python setlocal tabstop=4
+    au FileType python setlocal shiftwidth=4
+augroup END
+" }}}
+
+" Plugins configuration {{{
+" =============================================================================
+
+    " vim-airline plugin {{{
+    " https://github.com/bling/vim-airline/
+    " =========================================================================
+    set laststatus=2
+
+    " Automatically displays all buffers when there's only one tab open.
+    let g:airline#extensions#tabline#enabled = 1
+
+    " Disable separator used on the left and right side >
+    let g:airline_left_sep=''
+    let g:airline_right_sep=''
+
+    " Hide close button
+    let g:airline#extensions#tabline#show_close_button = 0
+    " }}}
+
+    " CtrlP plugin {{{
+    " https://github.com/kien/ctrlp.vim
+    " =========================================================================
+
+    " CtrlP will scan for dotfiles and dotdirs.
+    let g:ctrlp_show_hidden = 1
+
+    " When starting up, CtrlP sets its local working directory according to this
+    " variable
+    let g:ctrlp_working_path_mode = 'cra'
+    " }}}
+
+    " EasyMotion plugin {{{
+    " https://github.com/easymotion/vim-easymotion
+    " =========================================================================
+    " Turn on case insensitive feature
+    let g:EasyMotion_smartcase = 1
+
+    " Define custom motions
+    map <Space>h <Plug>(easymotion-b)
+    map <Space>l <Plug>(easymotion-w)
+    map <Space>j <Plug>(easymotion-j)
+    map <Space>k <Plug>(easymotion-k)
+    map <Space><Space> <Plug>(easymotion-s)
+    "}}}
+
+    " SyntaxComplete plugin {{{
+    " http://www.vim.org/scripts/script.php?script_id=3172
+    " =========================================================================
+    if has("autocmd") && exists("+omnifunc")
+    autocmd Filetype *
+    \   if &omnifunc == "" |
+    \       setlocal omnifunc=syntaxcomplete#Complete |
+    \   endif
+    endif
+    "}}}
+
+    " ultisnips plugin {{{
+    " https://github.com/sirver/ultisnips
+    " =========================================================================
+    " Set triggers
+    let g:UltiSnipsExpandTrigger="<CR>"
+    let g:UltiSnipsListSnippets="<C-tab>"
+    let g:UltiSnipsJumpForwardTrigger="<C-j>"
+    let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+
+    " If you want :UltiSnipsEdit to split your window.
+    let g:UltiSnipsEditSplit="vertical"
+    " }}}
+
+    " Syntastic plugin {{{
+    " https://github.com/scrooloose/syntastic/
+    " =========================================================================
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+    " }}}
+
+    " vim-better-whitespace plugin {{{
+    " https://github.com/ntpeters/vim-better-whitespace
+    " =========================================================================
+
+    " This will strip all trailing whitespace everytime
+    " you save the file for all file types.
+    autocmd BufWritePre * StripWhitespace
+    "}}}
+
+    " open-browser.vim plugin {{{
+    " http://www.vim.org/scripts/script.php?script_id=3133
+    " =========================================================================
+
+    " disable netrw's gx mapping.
+    let g:netrw_nogx = 1
+
+    " If it looks like URI, Open URI under cursor.
+    " Otherwise, Search word under cursor.
+    nmap gx <Plug>(openbrowser-smart-search)
+    " If it looks like URI, Open selected URI.
+    " Otherwise, Search selected word.
+    vmap gx <Plug>(openbrowser-smart-search)
+    " }}}
+
+    " emmet-vim plugin {{{
+    " https://github.com/mattn/emmet-vim
+    " =========================================================================
+
+    " Enable just for html/css filetypes only.
+    let g:user_emmet_install_global = 0
+    autocmd FileType html,css EmmetInstall
+    " }}}
+
+" }}}
+
+" vim:ts=4:sw=4:tw=79:fdm=marker
