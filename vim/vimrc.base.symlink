@@ -35,6 +35,9 @@ set lazyredraw
 " like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
+
+" Use the system clipboard for copy and paste.
+set clipboard=unnamedplus
 " }}}
 
 " VIM user interface {{{

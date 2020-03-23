@@ -29,7 +29,7 @@ XTerm*xftAntialias:    true
 XTerm*allowBoldFonts: false
 XTerm*scrollBar:      false
 xterm*faceName:       DejaVu Sans Mono for Powerline
-XTerm*faceSize:       14
+XTerm*faceSize:       13
 XTerm*cursorBlink:    false
 
 ! Unicode support

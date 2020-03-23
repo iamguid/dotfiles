@@ -38,3 +38,10 @@ xset r rate 200 30
 
 # Start awesome WM session
 exec awesome
+
+# Start thinkpad E470 dirty hack trackpoint
+# ./bin/ressurect_trackpoint_mb.sh
+
+# Disabling beeping
+xset -b
+
